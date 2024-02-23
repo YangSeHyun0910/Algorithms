@@ -3,22 +3,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int x = scanner.nextInt();
-        int y = scanner.nextInt();
+        int H = scanner.nextInt();
+        int M = scanner.nextInt();
 
-        if (x >= -10000 && x <= 10000 && x != 0 && y >= -10000 && y <= 10000 && y != 0) {
-            if (x > 0) {
-                if (y > 0) {
-                    System.out.println("1");
-                } else {
-                    System.out.println("4");
+        if (H >= 0 && H <= 23 && M >= 0 && M <= 59) {
+            if (M - 45 < 0) {
+                H -= 1;
+                M += 60 - 45;
+                if (H < 0) {
+                    H = 23;
                 }
+                System.out.println(H + " " + M);
             } else {
-                if (y > 0) {
-                    System.out.println("2");
-                } else {
-                    System.out.println("3");
-                }
+                M -= 45;
+                System.out.println(H + " " + M);
             }
         }
     }
