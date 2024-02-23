@@ -7,18 +7,21 @@ public class Main {
         int b = scanner.nextInt();
         int c = scanner.nextInt();
 
-        if (a >= 0 && a <= 23 && b >= 0 && b <= 59 && c >= 0 && c <= 1000) {
-            if (b + c >= 60) {
-                a = a + ((b + c) / 60) ;
-                b = (b + c) % 60;
-
-                if (a > 23) {
-                    a -= 24;
-                }
-                System.out.println(a + " " + b);
+        if (a > 0 && a < 7 && b > 0 && b < 7 && c > 0 && c < 7) {
+            if (a == b && b == c) {
+                System.out.println(10000 + a * 1000);
+            } else if (a == b || b == c ) {
+                System.out.println(1000 + b * 100);
+            } else if (a == c) {
+                System.out.println(1000 + a * 100);
             } else {
-                b += c;
-                System.out.println(a + " " + b);
+                if (a > b && a > c) {
+                    System.out.println(a * 100);
+                } else if (b > a && b > c) {
+                    System.out.println(b * 100);
+                } else {
+                    System.out.println(c * 100);
+                }
             }
         }
     }
