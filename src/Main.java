@@ -3,18 +3,22 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        int A = scanner.nextInt();
-        if (A >= 0 && A <= 100) {
-            if (A >= 90) {
-                System.out.println("A");
-            } else if (A >= 80) {
-                System.out.println("B");
-            } else if (A >= 70) {
-                System.out.println("C");
-            } else if (A >= 60) {
-                System.out.println("D");
+        int x = scanner.nextInt();
+        int y = scanner.nextInt();
+
+        if (x >= -10000 && x <= 10000 && x != 0 && y >= -10000 && y <= 10000 && y != 0) {
+            if (x > 0) {
+                if (y > 0) {
+                    System.out.println("1");
+                } else {
+                    System.out.println("4");
+                }
             } else {
-                System.out.println("F");
+                if (y > 0) {
+                    System.out.println("2");
+                } else {
+                    System.out.println("3");
+                }
             }
         }
     }
