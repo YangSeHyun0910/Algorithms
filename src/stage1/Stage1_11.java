@@ -23,9 +23,10 @@ public class Stage1_11 {
         long A = scanner.nextLong();
         long B = scanner.nextLong();
         long C = scanner.nextLong();
-        System.out.println(A + " " + B + " " + C);
+        if (A >= 1 && B >= 1 && C >= 1) {
+            long sum = A + B + C;
+            System.out.println(sum);
+        }
 
-        long sum = A + B + C;
-        System.out.println(sum);
     }
 }
