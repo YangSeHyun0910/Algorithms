@@ -1,31 +1,26 @@
+import java.io.*;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int x = scanner.nextInt();
-        int n = scanner.nextInt();
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        if (x >= 1 && x <= 1000000000 && n >= 1 && n <= 100 ) {
-            int[] item = new int[n];
-            int[] price = new int[n];
-            int sum = 0;
+        StringTokenizer st;
 
-            for (int i = 0, a = 0, b = 0; i < n; i++) {
-                a = scanner.nextInt();
-                b = scanner.nextInt();
-                if (a >= 1 && a <= 1000000 && b >= 1 && b <= 10) {
-                    item[i] = a;
-                    price[i] = b;
-                }
-                sum += item[i] * price[i];
-            }
+        //BufferedReader 을 통해 입력받은 값을 개행문자 단위(Line 단위)로 나누어진다. => readLine();
+        //리턴값이 String 으로 고정 되기 때문에 형변환 필요. => Integer.parseInt();
+        int count = Integer.parseInt(bufferedReader.readLine());
 
-            if (x == sum) {
-                System.out.println("Yes");
-            } else {
-                System.out.println("No");
+        int[] sum = new int[count];
+
+        if (count > 0 && count <= 1000000) {
+            for (int i = 0; i < count; i++) {
+                st = new StringTokenizer(bufferedReader.readLine());
+                bufferedWriter.write((Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken())) + "\n");
             }
         }
+        bufferedWriter.close();
     }
 }
