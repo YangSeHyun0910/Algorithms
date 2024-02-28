@@ -1,26 +1,23 @@
 import java.io.*;
 import java.util.Scanner;
-import java.util.StringTokenizer;
+
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        int[] count = new int[t];
 
-        StringTokenizer st;
-
-        //BufferedReader 을 통해 입력받은 값을 개행문자 단위(Line 단위)로 나누어진다. => readLine();
-        //리턴값이 String 으로 고정 되기 때문에 형변환 필요. => Integer.parseInt();
-        int count = Integer.parseInt(bufferedReader.readLine());
-
-        int[] sum = new int[count];
-
-        if (count > 0 && count <= 1000000) {
-            for (int i = 0; i < count; i++) {
-                st = new StringTokenizer(bufferedReader.readLine());
-                bufferedWriter.write((Integer.parseInt(st.nextToken()) + Integer.parseInt(st.nextToken())) + "\n");
+        for (int i = 0, a, b; i < count.length; i++) {
+            a = scanner.nextInt();
+            b = scanner.nextInt();
+            if (a > 0 && a < 10 && b > 0 && b < 10) {
+                count[i] = a + b;
             }
         }
-        bufferedWriter.close();
+
+        for (int i = 0; i < count.length; i++) {
+            System.out.println("Case #" + (i+1) + ": " + count[i]);
+        }
     }
 }
