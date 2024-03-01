@@ -5,17 +5,21 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
-        int n = scanner.nextInt();
+        int a = 0;
+        int b = 0;
+        int count = 0;
+        int[] result = new int[count];
 
-        if (n > 0 && n < 101) {
-            for (int i = 0; i < n; i++) {
-                for (int j = i + 1; j < n; j++) {
-                    System.out.print(" ");
-                }
-                for (int q = 0; q < i + 1; q++) {
-                    System.out.print("*");
-                }
-                System.out.println();
+        for (int i = 0; ; i++) {
+            a = scanner.nextInt();
+            b = scanner.nextInt();
+            count += 1;
+            if
+            (a > 0 && a < 10 && b > 0 && b < 10) {
+                System.out.println(a+b);
+            }
+            if (a == 0 && b == 0) {
+                break;
             }
         }
     }
