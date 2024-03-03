@@ -46,8 +46,7 @@ public class Stage3_12 {
         Scanner scanner = new Scanner(System.in);
         int a = 0;
         int b = 0;
-
-        while (scanner.hasNext()) {
+        while (scanner.hasNextInt()) {
             a = scanner.nextInt();
             b = scanner.nextInt();
             if (a > 0 && a < 10 && b > 0 && b < 10) {
