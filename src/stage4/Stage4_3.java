@@ -26,8 +26,8 @@ public class Stage4_3 {
         */
         Scanner scanner = new Scanner(System.in);
         int n = 0; //입력받을 정수의 갯수
-        int max = 0; //최대값 담아 둘 변수
-        int min = 1000000; //최소값 담아 둘 변수
+        int max = -1000001; //최대값 담아 둘 변수
+        int min = 1000001; //최소값 담아 둘 변수
         n = scanner.nextInt();
         int[] array = new int[n]; //입력받은 정수를 담아 둘 배열
 
@@ -44,10 +44,7 @@ public class Stage4_3 {
 
                 //-1,000,000 <= a <= 1,000,000 라면 배열에 담는다
                 array[i] = a;
-            }
 
-            //최소값, 최대값 구하는 반복문
-            for (int i = 0; i < n; i++) {
                 if (min > array[i]) {
                     min = array[i];
                 }
@@ -55,7 +52,6 @@ public class Stage4_3 {
                     max = array[i];
                 }
             }
-
             System.out.println(min + " " + max);
         }
 
