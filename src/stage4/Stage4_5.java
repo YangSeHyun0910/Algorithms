@@ -36,6 +36,35 @@ public class Stage4_5 {
         1 2 1 1 0
         */
         Scanner scanner = new Scanner(System.in);
+        // 바구니 갯수 n, 공을 넣을 횟수 m
+        // 바구니 갯수만큼 배열로 선언
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        int[] arr = new int[n];
 
+        // 주어진 조건에 맞는지 if 문으로 확인.
+        if (n > 0 && n < 101 && m > 0 && m < 101) {
+
+            // 시작바구니 i, 종료바구니 j, 넣을 공 번호 k 를 => 공 넣을 횟수 m만큼 반복
+            for (int a = 0, i = 0, j = 0, k = 0; a < m; a++) {
+                i = scanner.nextInt();
+                j = scanner.nextInt();
+                k = scanner.nextInt();
+
+                // 각 반복마다 입력된 i,j,k값이 조건에 맞는지 if문으로 확인
+                if (i >= 1 && j >= i && n >= j && k >= 1 && n >= k) {
+
+                    // 시작바구니 i 부터 종료바구니 j 까지 횟수로 반복.
+                    for (int b = i - 1; b < j; b++) {
+
+                        // 반복할 때 마다 해당 바구니에 공을 넣을 번호 k 할당.
+                        arr[b] = k;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(arr[i] + " ");
+        }
     }
 }
