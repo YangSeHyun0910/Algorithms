@@ -26,26 +26,19 @@ public class Main {
             if (i >= 1 && i <= j && j <= n) {
                 if (i - j > 0) {
                     count = i - j;
+
                 } else if (j - i > 0) {
                     count = j - i;
-                } else {
-                    continue;
-                }
 
-                if (count < 3) {
-                    for (int b = 0; b < count; b++) {
-                        temp = arr[i + b - 1];
-                        arr[i + b - 1] = arr[j - b - 1];
-                        arr[j - b - 1] = temp;
-                    }
-                } else {
-                    for (int b = 0; b < count-1; b++) {
-                        temp = arr[i + b - 1];
-                        arr[i + b - 1] = arr[j - b - 1];
-                        arr[j - b - 1] = temp;
-                    }
                 }
-
+                for (int b = 0; b < count; b++, i++, j--) {
+                    if (i > j) {
+                        continue;
+                    }
+                    temp = arr[i-1];
+                    arr[i-1] = arr[j-1];
+                    arr[j-1] = temp;
+                }
             }
         }
 

@@ -45,36 +45,34 @@ public class Stage4_9 {
         int count = 0;
         int temp = 0;
 
+        //입력받은 총 바구니 갯수를 1부터 시작해서 1씩 증가한 값이 담기는 배열로 생성
         for (int i = 0; i < n; i++) {
             arr[i] = 1 + i;
         }
 
+        //입력받은 바구니 바꾸는 횟수만큼 반복문 실행
         for (int a = 0, i = 0, j = 0; a < m; a++) {
             i = scanner.nextInt();
             j = scanner.nextInt();
             if (i >= 1 && i <= j && j <= n) {
-                if (i - j > 0) {
-                    count = i - j;
-                } else if (j - i > 0) {
-                    count = j - i;
-                } else {
-                    continue;
-                }
 
-                if (count < 3) {
-                    for (int b = 0; b < count; b++) {
-                        temp = arr[i + b - 1];
-                        arr[i + b - 1] = arr[j - b - 1];
-                        arr[j - b - 1] = temp;
-                    }
-                } else {
-                    for (int b = 0; b < count-1; b++) {
-                        temp = arr[i + b - 1];
-                        arr[i + b - 1] = arr[j - b - 1];
-                        arr[j - b - 1] = temp;
-                    }
-                }
+                //arr[i] ~ arr[j] 까지 자리를 맞바꾸기 때문에 i++, j-- 로 설정
+                //i = 1씩 증가, j = 1씩 감소
+                //arr[0] = arr[4]
+                //arr[1] = arr[3]
+                //arr[2] = arr[2] 이런 방식으로.
+                for (int b = 0; b < n; b++, i++, j--) {
 
+                    //단, 앞의 인덱스가 뒤에 인덱스보다 커지면 바뀌지 않도록 설정
+                    //arr[1] = arr[2] => 가능
+                    //arr[2] = arr[1] => 불가능
+                    if (i > j) {
+                        continue;
+                    }
+                    temp = arr[i-1];
+                    arr[i-1] = arr[j-1];
+                    arr[j-1] = temp;
+                }
             }
         }
 
