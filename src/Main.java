@@ -6,44 +6,47 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         /*
-        총 바구니 갯수, 역순으로 바꿀 횟수를 입력받는다
-        총 바구니 갯수 만큼의 배열을 만든다
-        치환을 위한 변수 temp 선언
+        총 과목수를 입력받는다.
+        과목당 점수를 한군데에 담아두기 위해 배열을 선언
+        가장 높은 수를 저장할 변수 선언
+        점수 / 가장높은수 * 100 의 값을 저장할 변수 선언
+        평균값을 계산하고 저장할 변수 선언
+        double 타입으로 선언한 이유
+        max = 가장 높은 점수는 각 과목당 나누어주고, 그 값이 소숫점으로 나오기 때문에
+              int 타입이면 0이 되기 때문에. => 10/30 => 0.3333333 => int 타입이면 0됨.
+        sum = max를 사용해서
         */
         int n = scanner.nextInt();
-        int m = scanner.nextInt();
         int[] arr = new int[n];
-        int count = 0;
-        int temp = 0;
+        double max = 0;
+        int sum = 0;
+        double average = 0;
 
-        for (int i = 0; i < n; i++) {
-            arr[i] = 1 + i;
-        }
+        if (n <= 1000) {
+            for (int i = 0, a = 0; i < n; i++) {
+                a = scanner.nextInt();
 
-        for (int a = 0, i = 0, j = 0; a < m; a++) {
-            i = scanner.nextInt();
-            j = scanner.nextInt();
-            if (i >= 1 && i <= j && j <= n) {
-                if (i - j > 0) {
-                    count = i - j;
-
-                } else if (j - i > 0) {
-                    count = j - i;
-
-                }
-                for (int b = 0; b < count; b++, i++, j--) {
-                    if (i > j) {
-                        continue;
-                    }
-                    temp = arr[i-1];
-                    arr[i-1] = arr[j-1];
-                    arr[j-1] = temp;
+                //입력받은 점수가 조건에 만족하면 배열에 담는다. 아니면 코드를 종료.
+                if (a <= 100 && a >= 0) {
+                    arr[i] = a;
+                } else {
+                    break;
                 }
             }
+
+            for (int i = 0; i < n; i++) {
+                if (max < arr[i]) {
+                    max = arr[i];
+                }
+            }
+
+            for (int i = 0; i < n; i++) {
+                sum += ((arr[i] / max) * 100);
+            }
+
+            average = sum/n;
+            System.out.println(average);
         }
 
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
     }
 }
