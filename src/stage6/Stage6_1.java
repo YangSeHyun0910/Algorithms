@@ -1,9 +1,31 @@
-import java.io.*;
+package stage6;
+
 import java.util.Scanner;
 
+public class Stage6_1 {
+    public static void main(String[] args) {
+        /*
+        문제 - 새싹
+        입력 받은 대로 출력하는 프로그램을 작성하시오.
+        아래 예제와 같이 새싹을 출력하시오.
 
-public class Main {
-    public static void main(String[] args) throws IOException {
+        입력
+        입력은 없다.
+
+        출력
+        새싹을 출력한다.
+
+        예제 입력 1
+
+        예제 출력 1
+                 ,r'"7
+        r`-_   ,'  ,/
+         \. ". L_r'
+           `~\/
+              |
+              |
+        */
+
         //첫째 줄
         for (int i = 0; i < 14; i++) {
             if (i == 9) {
