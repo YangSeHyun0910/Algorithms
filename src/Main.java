@@ -4,106 +4,65 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //첫째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i == 9) {
-                System.out.print(",");
-            } else if (i == 10) {
-                System.out.print("r");
-            } else if (i == 11) {
-                System.out.print("'");
-            } else if (i == 12) {
-                System.out.print('"');
-            } else if (i == 13) {
-                System.out.println("7");
+        Scanner scanner = new Scanner(System.in);
+        int[] arr = new int[6];
+        int[] count = new int[6];
+
+        //각각의 체스말의 갯수를 입력받기 위해 6번 반복 실행
+        for (int i = 0, a = 0; i < 6; i++) {
+            a = scanner.nextInt();
+            if (a >= 0 && a <= 10) {
+                arr[i] = a;
+                count[i] = 0;
             } else {
-                System.out.print(" ");
+                break;
             }
         }
 
-        //둘째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i == 0) {
-                System.out.print("r");
-            } else if (i == 1) {
-                System.out.print("`");
-            } else if (i == 2) {
-                System.out.print("-");
-            } else if (i == 3) {
-                System.out.print('_');
-            } else if (i > 3 && i < 7) {
-                System.out.print(" ");
-            } else if (i == 7) {
-                System.out.print(",");
-            } else if (i == 8) {
-                System.out.print("'");
-            } else if (i > 8 && i < 11) {
-                System.out.print(" ");
-            } else if (i == 11) {
-                System.out.print(",");
-            } else if (i == 12) {
-                System.out.println("/");
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i <= 1) {
+                    if (arr[i] == 1 || count[i] == 1) {
+                        break;
+                    } else if (arr[i] >= 2 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] <= 0) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
+                } else if (i >= 2 && i <= 4) {
+                    if (arr[i] == 2 || count[i] == 2) {
+                        break;
+                    } else if (arr[i] >= 3 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] < 2) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
+                } else {
+                    if (arr[i] == 8 || count[i] == 8) {
+                        break;
+                    } else if (arr[i] >= 9 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] < 8) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
+                }
             }
         }
 
-        //셋째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i == 0) {
-                System.out.print(" ");
-            } else if (i == 1) {
-                System.out.print("\\");
-            } else if (i == 2) {
-                System.out.print(".");
-            } else if (i == 3) {
-                System.out.print(' ');
-            } else if (i == 4) {
-                System.out.print('"');
-            } else if (i == 5) {
-                System.out.print(".");
-            } else if (i == 6) {
-                System.out.print(" ");
-            } else if (i == 7) {
-                System.out.print("L");
-            } else if (i == 8) {
-                System.out.print("_");
-            } else if (i == 9) {
-                System.out.print("r");
-            } else if (i == 10) {
-                System.out.println("'");
-            }
-        }
-
-        //넷째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i >= 0 && i < 3) {
-                System.out.print(" ");
-            } else if (i == 3) {
-                System.out.print("`");
-            } else if (i == 4) {
-                System.out.print("~");
-            } else if (i == 5) {
-                System.out.print("\\");
-            } else if (i == 6) {
-                System.out.println('/');
-            }
-        }
-
-        //다섯째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i <= 5) {
-                System.out.print(" ");
-            } else if (i == 6) {
-                System.out.println("|");
-            }
-        }
-
-        //여섯째 줄
-        for (int i = 0; i < 14; i++) {
-            if (i <= 5) {
-                System.out.print(" ");
-            } else if (i == 6) {
-                System.out.println("|");
-            }
+        for (int i = 0; i < count.length; i++) {
+            System.out.print(count[i] + " ");
         }
     }
 }

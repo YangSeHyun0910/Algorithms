@@ -42,103 +42,58 @@ public class Stage6_2 {
         //각각의 체스말의 갯수를 입력받기 위해 6번 반복 실행
         for (int i = 0, a = 0; i < 6; i++) {
             a = scanner.nextInt();
-            count[i] = 0;
             if (a >= 0 && a <= 10) {
                 arr[i] = a;
+                count[i] = 0;
             } else {
                 break;
             }
         }
 
-        for (int i = 0; i < 10; i++) {
-            if (arr[0] < 0 || arr[0] > 10) {
-                if (arr[0] < 0) {
-                    arr[0] += 1;
-                    count[0] += 1;
-                } else if (arr[0] > 1) {
-                    arr[0] -= 1;
-                    count[0] -= 1;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (i <= 1) {
+                    if (arr[i] == 1 || count[i] == 1) {
+                        break;
+                    } else if (arr[i] >= 2 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] <= 0) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
+                } else if (i >= 2 && i <= 4) {
+                    if (arr[i] == 2 || count[i] == 2) {
+                        break;
+                    } else if (arr[i] >= 3 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] < 2) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
+                } else {
+                    if (arr[i] == 8 || count[i] == 8) {
+                        break;
+                    } else if (arr[i] >= 9 && arr[i] <= 10) {
+                        count[i] = count[i] - 1;
+                        arr[i] = arr[i] - 1;
+                        continue;
+                    } else if (arr[i] < 8) {
+                        count[i] = count[i] + 1;
+                        arr[i] = arr[i] + 1;
+                        continue;
+                    }
                 }
-            } else {
-                break;
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            if (arr[1] < 0 || arr[1] > 10) {
-                if (arr[1] < 0) {
-                    arr[1] += 1;
-                    count[1] += 1;
-                } else if (arr[1] > 1) {
-                    arr[1] -= 1;
-                    count[1] -= 1;
-                }
-            } else {
-                continue;
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            if (arr[2] < 0 || arr[2] > 10) {
-                if (arr[2] < 0) {
-                    arr[2] += 1;
-                    count[2] += 1;
-                } else if (arr[2] > 2) {
-                    arr[2] -= 1;
-                    count[2] -= 1;
-                }
-            } else {
-                continue;
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            if (arr[3] < 0 || arr[3] > 10) {
-                if (arr[3] < 0) {
-                    arr[3] += 1;
-                    count[3] += 1;
-                } else if (arr[3] > 2) {
-                    arr[3] -= 1;
-                    count[3] -= 1;
-                }
-            } else {
-                continue;
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            if (arr[4] < 0 || arr[4] > 10) {
-                if (arr[4] < 0) {
-                    arr[4] += 1;
-                    count[4] += 1;
-                } else if (arr[4] > 2) {
-                    arr[4] -= 1;
-                    count[4] -= 1;
-                }
-            } else {
-                continue;
-            }
-        }
-
-        for (int i = 0; i < 10; i++) {
-            if (arr[5] < 0 || arr[5] > 10) {
-                if (arr[5] < 0) {
-                    arr[5] += 1;
-                    count[5] += 1;
-                } else if (arr[5] > 8) {
-                    arr[5] -= 1;
-                    count[5] -= 1;
-                }
-            } else {
-                continue;
             }
         }
 
         for (int i = 0; i < count.length; i++) {
             System.out.print(count[i] + " ");
         }
-
-
     }
-
 }
