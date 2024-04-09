@@ -6,69 +6,94 @@ public class Stage6_5 {
 
     public static void main(String[] args) {
         /*
-        문제 -
-
-        알파벳 소문자로만 이루어진 단어가 주어진다. 이때, 이 단어가 팰린드롬인지 아닌지 확인하는 프로그램을 작성하시오.
-        팰린드롬이란 앞으로 읽을 때와 거꾸로 읽을 때 똑같은 단어를 말한다.
-        level, noon은 팰린드롬이고, baekjoon, online, judge는 팰린드롬이 아니다.
+        문제 - 단어 공부
+        알파벳 대소문자로 된 단어가 주어지면, 이 단어에서 가장 많이 사용된 알파벳이 무엇인지 알아내는 프로그램을 작성하시오.
+        단, 대문자와 소문자를 구분하지 않는다.
 
         입력
-        첫째 줄에 단어가 주어진다.
-        단어의 길이는 1보다 크거나 같고, 100보다 작거나 같으며, 알파벳 소문자로만 이루어져 있다.
+        첫째 줄에 알파벳 대소문자로 이루어진 단어가 주어진다.
+        주어지는 단어의 길이는 1,000,000을 넘지 않는다.
 
         출력
-        첫째 줄에 팰린드롬이면 1, 아니면 0을 출력한다.
+        첫째 줄에 이 단어에서 가장 많이 사용된 알파벳을 대문자로 출력한다.
+        단, 가장 많이 사용된 알파벳이 여러 개 존재하는 경우에는 ?를 출력한다.
 
         예제 입력 1
-        level
+        Mississipi
         예제 출력 1
-        1
+        ?
+
         예제 입력 2
-        baekjoon
+        zZa
         예제 출력 2
-        0
+        Z
+
+        예제 입력 3
+        z
+        예제 출력 3
+        Z
+
+        예제 입력 4
+        baaa
+        예제 출력 4
+        A
         */
 
         /*
         1. 문자열을 입력받는다.
-        2. 입력받은 문자열을 소문자로 변환한다.
-        3. 앞으로 읽어도, 뒤로 읽어도 같아야 하기 때문에 정방향과 비교 할 뒤집은 문자열을 담을 변수 reverse 선언
-        4. 정방향, 역방향 모두 같다는 의미는 문자열 중에서 각각의 위치의 문자가 모두 같다는 것을 의미
-        => 입력받은 문자열의 length만큼 일치하는 문자의 갯수가 존재한다는 의미와 같음
-        => ex) noon(정방향) == noon(역방향) => 각각의 위치의 문자가 서로 같음.
-        =>     noon의 length = 4, 위치가 같은 문자 = 4개
-        => 일치하는 문자의 갯수를 확인 할 변수 count 선언
+        2. 입력받은 문자열의 길이만큼의 int타입의 배열을 선언한다.
+        3. 입력받은 문자열에서 각각의 문자가 중복되는지 확인하기 위한 변수(count) 선언
+        4. 가장 많이 중복된 횟수를 저장하기 위한 변수(max) 선언
+        5. 가장 많이 중복된 횟수를 가진 문자가 몇개인지 확인하기 위한 변수(result) 선언
         */
         Scanner scanner = new Scanner(System.in);
         String s = scanner.nextLine().toLowerCase();
-        String reverse = "";
+        int[] arr = new int[s.length()];
+        String ss = null;
         int count = 0;
+        int max = 0;
+        int result = 0;
 
-        //입력받은 문자열을 뒤집어서 저장한다.
-        //문자열의 뒤부터 입력받아야하기 때문에 시작 : s.length() - 1 => index이기 때문에 -1 해 줌
-        for (int i = s.length() - 1; i >= 0; i--) {
-            reverse = reverse + s.charAt(i);
-        }
+        if (s.length() <= 1000000) {
 
-        //문자열의 정방향과 역방향을 비교해서 팰린드롬인지 확인.
-        //각각의 위치의 문자가 일치하면 count의 수를 1씩 증가
-        //=> 이유? s.length() == count 인지 확인하기 위해서.
-        //=> (s.charAt(i) == reverse.charAt(i)) 거짓이면 반복문을 바로 탈출.
-        //=> 이유? 팰린드롬이 아니기 때문에 더 이상 진행할 필요X
-        for (int i = 0; i < s.length(); i++) {
-            if (s.charAt(i) == reverse.charAt(i)) {
-                count += 1;
-            } else {
-                break;
+            //중첩 반목문을 활용해서 문자열을 각각의 문자로 나누어서 비교
+            for (int i = 0; i < s.length(); i++) {
+                for (int j = i + 1; j < s.length(); j++) {
+
+                    //똑같은 문자 발견시, count값을 1씩 증가
+                    //=> 그리고 int타입의 배열에 문자열의 위치에 count값 저장.
+                    if (s.charAt(i) == s.charAt(j)) {
+                        count += 1;
+                        arr[i] = count;
+                    }
+                }
+
+                //1개의 문자가 모든 문자들과 비교가 끝나면 count값 0으로 초기화
+                count = 0;
             }
-        }
 
-        //입력받은 문자열이 팰린드롬인지 확인
-        //확인방법 : s.length() == count 인지
-        if (s.length() == count) {
-            System.out.println("1");
-        } else {
-            System.out.println("0");
+            //가장 많이 중복된 단어와 단어의 위치를 알기위한 반복문
+            for (int i = 0; i < arr.length; i++) {
+
+                //max값을 0으로 설정해 놓고, 문자열의 각각의 문자위치의 중복값을 저장한 count의 값 비교
+                //높은수가 갱신 될 때마다, max에 저장. ss(문자를 알기위함)에 문자 저장
+                if (max < arr[i]) {
+                    max = arr[i];
+                    ss = String.valueOf(s.charAt(i));
+                }
+            }
+
+            for (int i = 0; i < arr.length; i++) {
+                if (max == arr[i]) {
+                    result += 1;
+                }
+            }
+
+            if (result > 1) {
+                System.out.println("?");
+            } else {
+                System.out.println(ss);
+            }
         }
     }
 }
